@@ -24,11 +24,9 @@ def getOCR(im, coors):
     results = ocr.ocr(im, cls=True)
     text = ""
    
-    for line in results:
-        for word_info in line:
-            # Check if the confidence is above the threshold
-            if word_info[-2] >= conf:
-                text += word_info[-1] + ' '
+       if results and results[0] and results[0][0] and results[0][0][1] and results[0][0][1][0]:
+        # Extract the recognized text
+        text = results[0][0][1][0]
 
     return str(text)
 
